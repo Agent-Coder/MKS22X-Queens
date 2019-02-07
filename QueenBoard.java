@@ -27,4 +27,7 @@ public class QueenBoard{
       }
     }
   }
+  public boolean solve(){
+    
+  }
 }
