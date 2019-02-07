@@ -11,7 +11,20 @@ public class QueenBoard{
         }
       }
     }
-    private boolean addQueen(int r,int c){}
-    private boolean removeQueen(int r,int c){}
-      
+    //private boolean addQueen(int r,int c){}
+    //private boolean removeQueen(int r,int c){}
+    public String toString(){
+      s="";
+      for (int i=0;i<board.length;i++){
+        s+="\n";
+        for (int j=0;j<board.length;j++){
+          if (board[i][j]==0){
+            s+="_";
+          }
+          else{
+            s+="Q";
+          }
+      }
+    }
+  }
 }
