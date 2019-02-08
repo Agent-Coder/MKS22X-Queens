@@ -14,7 +14,7 @@ public class QueenBoard{
     //private boolean addQueen(int r,int c){}
     //private boolean removeQueen(int r,int c){}
     public String toString(){
-      s="";
+      String s="";
       for (int i=0;i<board.length;i++){
         s+="\n";
         for (int j=0;j<board.length;j++){
@@ -39,7 +39,8 @@ public class QueenBoard{
       board[r][i]=board[r][i]+1;
       board[i][c]=board[i][c]+1;
     }
-    int a,b=0;
+    int a=0;
+    int b=0;
     while(a<board.length&&b<board.length){
       board[a][b]=board[a][b]+1;
       a+=1;
