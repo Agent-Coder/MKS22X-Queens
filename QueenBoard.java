@@ -53,9 +53,6 @@ public class QueenBoard{
     if (board[r][c]!=0){
       return false;
     }
-    else{
-      board[r][c]=-1;
-    }
     for (int i=0;i<board.length;i++){
       board[r][i]=board[r][i]+1;
       board[i][c]=board[i][c]+1;
@@ -67,6 +64,7 @@ public class QueenBoard{
       a+=1;
       b+=1;
     }
+    board[r][c]=-1;
     return true;
   }
   private boolean removeQueen(int r,int c){
