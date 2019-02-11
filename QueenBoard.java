@@ -102,20 +102,31 @@ public class QueenBoard{
     }
     for (int i=0;i<board.length;i++){
       board[r][i]=board[r][i]-1;
-      board[i][c]=board[i][c]-1;
+      if(r!=c){
+        board[i][c]=board[i][c]-1;
+      }
     }
     int a=0;
-    int b=0;
+    int b=c-r;
     while(a<board.length&&b<board.length){
       board[a][b]=board[a][b]-1;
       a+=1;
       b+=1;
     }
+    a=0;
+    b=c+r;
+    while(a<board.length&&b>=0){
+      board[a][b]=board[a][b]-1;
+      a+=1;
+      b-=1;
+    }
+    board[r][c]=0;
     return true;
   }
   public static void main(String[] args) {
     QueenBoard x=new QueenBoard(8);
     x.addQueen(1,3);
+    x.removeQueen(1,3);
     System.out.println(x);
   }
 }
