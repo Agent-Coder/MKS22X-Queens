@@ -67,6 +67,7 @@ public class QueenBoard{
       }
   }
   private boolean addQueen(int r,int c){
+    System.out.println(this);
     if (board[r][c]!=0){
       return false;
     }
@@ -79,7 +80,7 @@ public class QueenBoard{
     int a=0;
     int b=c-r;
     System.out.println(this);
-    while(a<board.length&&b<board.length){
+    while(a<board.length&&b<board.length&&a>=0&&b>=0){
       board[a][b]=board[a][b]+1;
       a+=1;
       b+=1;
@@ -87,7 +88,7 @@ public class QueenBoard{
     System.out.println(this);
     a=0;
     b=c+r;
-    while(a<board.length&&b>=0){
+    while(a<board.length&&b<board.length&&a>=0&&b>=0){
       board[a][b]=board[a][b]+1;
       a+=1;
       b-=1;
@@ -111,14 +112,14 @@ public class QueenBoard{
     }
     int a=0;
     int b=c-r;
-    while(a<board.length&&b<board.length){
+    while(a<board.length&&b<board.length&&a>=0&&b>=0){
       board[a][b]=board[a][b]-1;
       a+=1;
       b+=1;
     }
     a=0;
     b=c+r;
-    while(a<board.length&&b>=0){
+    while(a<board.length&&b<board.length&&a>=0&&b>=0){
       board[a][b]=board[a][b]-1;
       a+=1;
       b-=1;
