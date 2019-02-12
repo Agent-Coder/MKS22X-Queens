@@ -19,10 +19,10 @@ public class QueenBoard{
         s+="\n";
         for (int j=0;j<board.length;j++){
           if (board[i][j]!=-1){
-            s+=board[i][j];
+            s+="_    ";
           }
           else{
-            s+=board[i][j];
+            s+="Q    ";
           }
       }
     }
@@ -36,38 +36,23 @@ public class QueenBoard{
         }
       }
     }
-    return solution(board.length,0,0);
+    return solution(0);
   }
-  public boolean solution(int size,int r,int c){
-    if (r==board.length||c==board.length||r<0){
-      if(size<0){
-        return true;
-      }
-      else{
-        return false;
-      }
+  public boolean solution(int r){
+    if(r==board.length){
+      return true;
     }
-    System.out.println("begin"+size+" "+r+" "+c);
-    if(addQueen(r,c)){
-      return solution(size-1,r+1,0);
-    }
-    else{
-      System.out.println("remove"+r+" "+c);
-      for (int k=0;k<board.length;k++) {
-        if(r!=0&&board[r][k]==-1){
-          System.out.println("removing"+(r-1)+" "+c);
-          removeQueen(r,k);
-          c=k;
-          }
+    for (int i=0;i<board.length;i++){
+      if (addQueen(r,i)){
+        if (solution(r+1)){
+          return true;
         }
-        if(c+1==board.length){
-            return solution(size,r-1,0);
-        }
-        return solution(size,r,c+1);
       }
+      removeQueen(r,i);
+    }
+    return false;
   }
   private boolean addQueen(int r,int c){
-    System.out.println(this);
     if (board[r][c]!=0){
       return false;
     }
@@ -79,13 +64,11 @@ public class QueenBoard{
     }
     int a=0;
     int b=c-r;
-    System.out.println(this);
     while(a<board.length&&b<board.length&&a>=0&&b>=0){
       board[a][b]=board[a][b]+1;
       a+=1;
       b+=1;
     }
-    System.out.println(this);
     a=0;
     b=c+r;
     while(a<board.length&&b<board.length&&a>=0&&b>=0){
@@ -94,15 +77,11 @@ public class QueenBoard{
       b-=1;
     }
     board[r][c]=-1;
-    System.out.println(this);
     return true;
   }
   private boolean removeQueen(int r,int c){
     if (board[r][c]==0){
       return false;
-    }
-    else{
-      board[r][c]=0;
     }
     for (int i=0;i<board.length;i++){
       board[r][i]=board[r][i]-1;
