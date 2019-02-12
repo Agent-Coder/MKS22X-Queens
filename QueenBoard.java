@@ -32,7 +32,7 @@ public class QueenBoard{
     for(int i=0;i<board.length;i++){
       for(int h=0;h<board.length;h++){
         if (board[i][h]!=0){
-          throw new IllegalStateException();
+          throw new IllegalStateException("Board does not start as empty");
         }
       }
     }
@@ -99,7 +99,7 @@ public class QueenBoard{
       if(i+r<board.length&&i+c<board.length){
         board[r+i][c+i]=board[r+i][c+i]-1;
       }
-      if(r-i>0&&c-i>=0){
+      if(r-i>=0&&c-i>=0){
         board[r-i][c-i]=board[r-i][c-i]-1;
       }
       if(i+r<board.length&&c-i>=0){
@@ -112,30 +112,30 @@ public class QueenBoard{
     board[r][c]=0;
     return true;
   }
-  public static void main(String[] args) {
-    QueenBoard a=new QueenBoard(2);
-    QueenBoard b=new QueenBoard(3);
-    QueenBoard c=new QueenBoard(4);
-    QueenBoard d=new QueenBoard(5);
-    QueenBoard e=new QueenBoard(6);
-    QueenBoard f=new QueenBoard(7);
-    QueenBoard g=new QueenBoard(8);
-    QueenBoard h=new QueenBoard(14);
-    a.solve();
-    b.solve();
-    c.solve();
-    d.solve();
-    e.solve();
-    f.solve();
-    g.solve();
-    h.solve();
-    System.out.println(a);
-    System.out.println(b);
-    System.out.println(c);
-    System.out.println(d);
-    System.out.println(e);
-    System.out.println(f);
-    System.out.println(g);
-    System.out.println(h);
+  public int countSolutions(){
+    for(int i=0;i<board.length;i++){
+      for(int h=0;h<board.length;h++){
+        if (board[i][h]!=0){
+          throw new IllegalStateException("Board does not start as empty");
+        }
+      }
+    }
+
+    int answer=countingSol(0);
+    this.clear();
+    return answer;
+  }
+  public int countingSol(int r){
+    if(r==board.length){
+      return 1;
+    }
+    int count=0;
+    for (int i=0;i<board.length;i++){
+      if (addQueen(r,i)){
+        count+=countingSol(r+1);
+        removeQueen(r,i);
+      }
+    }
+    return count;
   }
 }
