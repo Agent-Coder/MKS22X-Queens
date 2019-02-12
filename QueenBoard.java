@@ -19,10 +19,10 @@ public class QueenBoard{
         s+="\n";
         for (int j=0;j<board.length;j++){
           if (board[i][j]!=-1){
-            s+="_    ";
+            s+="_ ";
           }
           else{
-            s+="Q    ";
+            s+="Q ";
           }
       }
     }
@@ -36,7 +36,13 @@ public class QueenBoard{
         }
       }
     }
-    return solution(0);
+    if (solution(0)){
+      return true;
+    }
+    else{
+      this.clear();
+      return false;
+    }
   }
   public boolean solution(int r){
     if(r==board.length){
@@ -62,25 +68,25 @@ public class QueenBoard{
         board[i][c]=board[i][c]+1;
       }
     }
-    int a=0;
-    int b=c-r;
-    while(a<board.length&&b<board.length&&a>=0&&b>=0){
-      board[a][b]=board[a][b]+1;
-      a+=1;
-      b+=1;
-    }
-    a=0;
-    b=c+r;
-    while(a<board.length&&b<board.length&&a>=0&&b>=0){
-      board[a][b]=board[a][b]+1;
-      a+=1;
-      b-=1;
+    for (int i=0;i<board.length;i++){
+      if(i+r<board.length&&i+c<board.length){
+        board[r+i][c+i]=board[r+i][c+i]+1;
+      }
+      if(r-i>=0&&c-i>=0){
+        board[r-i][c-i]=board[r-i][c-i]+1;
+      }
+      if(i+r<board.length&&c-i>=0){
+        board[r+i][c-i]=board[r+i][c-i]+1;
+      }
+      if(r-i>=0&&i+c<board.length){
+        board[r-i][c+i]=board[r-i][c+i]+1;
+      }
     }
     board[r][c]=-1;
     return true;
   }
   private boolean removeQueen(int r,int c){
-    if (board[r][c]==0){
+    if (board[r][c]!=-1){
       return false;
     }
     for (int i=0;i<board.length;i++){
@@ -89,26 +95,47 @@ public class QueenBoard{
         board[i][c]=board[i][c]-1;
       }
     }
-    int a=0;
-    int b=c-r;
-    while(a<board.length&&b<board.length&&a>=0&&b>=0){
-      board[a][b]=board[a][b]-1;
-      a+=1;
-      b+=1;
-    }
-    a=0;
-    b=c+r;
-    while(a<board.length&&b<board.length&&a>=0&&b>=0){
-      board[a][b]=board[a][b]-1;
-      a+=1;
-      b-=1;
+    for (int i=0;i<board.length;i++){
+      if(i+r<board.length&&i+c<board.length){
+        board[r+i][c+i]=board[r+i][c+i]-1;
+      }
+      if(r-i>0&&c-i>=0){
+        board[r-i][c-i]=board[r-i][c-i]-1;
+      }
+      if(i+r<board.length&&c-i>=0){
+        board[r+i][c-i]=board[r+i][c-i]-1;
+      }
+      if(r-i>=0&&i+c<board.length){
+        board[r-i][c+i]=board[r-i][c+i]-1;
+      }
     }
     board[r][c]=0;
     return true;
   }
   public static void main(String[] args) {
-    QueenBoard x=new QueenBoard(8);
-    x.solve();
-    System.out.println(x);
+    QueenBoard a=new QueenBoard(2);
+    QueenBoard b=new QueenBoard(3);
+    QueenBoard c=new QueenBoard(4);
+    QueenBoard d=new QueenBoard(5);
+    QueenBoard e=new QueenBoard(6);
+    QueenBoard f=new QueenBoard(7);
+    QueenBoard g=new QueenBoard(8);
+    QueenBoard h=new QueenBoard(14);
+    a.solve();
+    b.solve();
+    c.solve();
+    d.solve();
+    e.solve();
+    f.solve();
+    g.solve();
+    h.solve();
+    System.out.println(a);
+    System.out.println(b);
+    System.out.println(c);
+    System.out.println(d);
+    System.out.println(e);
+    System.out.println(f);
+    System.out.println(g);
+    System.out.println(h);
   }
 }
