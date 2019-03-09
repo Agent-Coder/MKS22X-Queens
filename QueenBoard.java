@@ -32,7 +32,7 @@ public class QueenBoard{
     for(int i=0;i<board.length;i++){
       for(int h=0;h<board.length;h++){
         if (board[i][h]!=0){
-          throw new IllegalStateException("Board does not start as empty");
+          throw new IllegalStateException();
         }
       }
     }
@@ -116,7 +116,7 @@ public class QueenBoard{
     for(int i=0;i<board.length;i++){
       for(int h=0;h<board.length;h++){
         if (board[i][h]!=0){
-          throw new IllegalStateException("Board does not start as empty");
+          throw new IllegalStateException();
         }
       }
     }
