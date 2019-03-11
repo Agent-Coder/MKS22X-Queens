@@ -2,7 +2,9 @@ public class QueenBoard{
     private int[][] board;
     public QueenBoard(int size){
       board=new int[size][size];
+        //set the square board's size
       this.clear();
+        //make everything zero
     }
     private void clear(){
       for (int i=0;i<board.length;i++){
@@ -34,6 +36,7 @@ public class QueenBoard{
       for(int h=0;h<board.length;h++){
         if (board[i][h]!=0){
           throw new IllegalStateException();
+            //if states do not begin with all zeros, throw error
         }
       }
     }
@@ -42,6 +45,7 @@ public class QueenBoard{
     }
     else{
       this.clear();
+        //if no solution, clear it first
       return false;
     }
   }
